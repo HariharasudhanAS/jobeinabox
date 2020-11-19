@@ -5,7 +5,7 @@
 FROM ubuntu:18.04
 
 LABEL maintainers="richard.lobb@canterbury.ac.nz,j.hoedjes@hva.nl"
-ARG TZ=Pacific/Auckland
+ARG TZ=Asia/Kolkata
 ARG ROOTPASS=jobeisfab
 # Set up the (apache) environment variables
 ENV APACHE_RUN_USER www-data
@@ -64,8 +64,8 @@ RUN ln -snf /usr/share/zoneinfo/"$TZ" /etc/localtime && \
     sed -i 's/expose_php\ =\ On/expose_php\ =\ Off/g' /etc/php/7.2/cli/php.ini && \
     mkdir -p /var/crash && \
     echo "root:$ROOTPASS" | chpasswd && \
-    echo "Jobe" > /var/www/html/index.html && \
-    git clone https://github.com/trampgeek/jobe.git /var/www/html/jobe && \
+    echo -e "Sathyabama Jobe Server\n \n Maintained by: www.cognibot.ml" > /var/www/html/index.html && \
+    git clone https://github.com/HariharasudhanAS/jobe.git /var/www/html/jobe && \
     apache2ctl start && \
     cd /var/www/html/jobe && ./install && \
     chown -R www-data:www-data /var/www/html && \
