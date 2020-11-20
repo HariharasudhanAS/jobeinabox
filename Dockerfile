@@ -51,6 +51,7 @@ RUN ln -snf /usr/share/zoneinfo/"$TZ" /etc/localtime && \
       sudo \
       tzdata \
       unzip && \
+    pip3 install wheel && \
     python3 -m pip install pylint && \
     pylint --reports=no --score=n --generate-rcfile > /etc/pylintrc && \
     ln -sf /proc/self/fd/1 /var/log/apache2/access.log && \
@@ -64,7 +65,7 @@ RUN ln -snf /usr/share/zoneinfo/"$TZ" /etc/localtime && \
     sed -i 's/expose_php\ =\ On/expose_php\ =\ Off/g' /etc/php/7.2/cli/php.ini && \
     mkdir -p /var/crash && \
     echo "root:$ROOTPASS" | chpasswd && \
-    echo -e "Sathyabama Jobe Server\n \n Maintained by: www.cognibot.ml" > /var/www/html/index.html && \
+    echo "Sathyabama Jobe Server Maintained by: www.cognibot.ml" > /var/www/html/index.html && \
     git clone https://github.com/HariharasudhanAS/jobe.git /var/www/html/jobe && \
     apache2ctl start && \
     cd /var/www/html/jobe && ./install && \
